@@ -1,0 +1,26 @@
+<h1>Listing tickets</h1>
+
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Tech</th>
+    <th>Machine</th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.student.last_name %></td>
+    <td><%= ticket.technician.first_name %> (<%= ticket.technician.role.name %>)</td>
+    <td><%= ticket.machine.color.name %> <%= ticket.machine.manufacturer.name %> <%= ticket.machine.version.name %></td>
+    <td><%= link_to 'Show', ticket %></td>
+    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+    <td><%= link_to 'Destroy', ticket, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% ticket.repairs.each do |repair| %>
+  <%= repair.summary %>
+  <% end %>
+<% end %>
+</table>
+
+<br />
+<%= link_to 'New Ticket', new_ticket_path %>
