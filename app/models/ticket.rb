@@ -21,4 +21,5 @@ class Ticket < ActiveRecord::Base
   belongs_to :machine
   belongs_to :student
   has_many :repairs
+  accepts_nested_attributes_for :abstract, :machine, :student, :technician
 end
